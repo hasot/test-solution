@@ -70,15 +70,14 @@ class BookForm extends Component {
       </div>
       <div className="button-div">
         <button  onClick={() =>this.cancelBook()}>Отмена</button>
-        {this.props.edit && <button onClick={() =>this.editBook()} disabled={this.disabledButton()}>Редактировать</button>}
-        {!this.props.edit &&  <button onClick={() =>this.addBook()} disabled={this.disabledButton()}>Добавить</button>}  
+        {this.props.edit && <button onClick={() =>this.editBook()} disabled={this.disabledButton()}>Edit</button>}
+        {!this.props.edit &&  <button onClick={() =>this.addBook()} disabled={this.disabledButton()}>Add</button>}  
       </div>
       </div>
     );
   }
 
   render() {
-    console.log('this.props.showMenu',this.props.showMenu);
     return (
       <div>
         <div className="form">
