@@ -1,0 +1,39 @@
+.container{
+    height: 100%;
+    width: 100%;
+    background:  #eef5f9;
+}
+.book-container{
+    display: flex;
+    flex-flow: row wrap;
+    align-items: flex-start;
+    webkit-box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.1);
+    margin: 30px;
+    border-radius: 5px;
+    background-color: #fff
+}
+
+.book-container > div{
+    flex-grow: 1;
+    flex-basis: 150px;
+    box-sizing: border-box;
+
+}
+
+.book-info{
+    padding: 5px;
+    margin: 7px;
+}
+.book-info > div{
+    padding: 2px;
+    margin: 3px;
+}
+.buttons > button {
+    padding: 2px 5px;
+}
+@media (max-width: 600px) {
+    .book-container{
+        margin-top: 100px;
+    }
+}
