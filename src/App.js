@@ -8,16 +8,9 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.initState();
-    this.addBook = this.addBook.bind(this);
-    this.removeBook = this.removeBook.bind(this);
-    this.onInputTextChange = this.onInputTextChange.bind(this);
-    this.editBook = this.editBook.bind(this);
-    this.editButtonBook = this.editButtonBook.bind(this);
-    this.cancelBook = this.cancelBook.bind(this);
-    this.openMenu = this.openMenu.bind(this);
 }
 
-initState(){
+initState = () => {
     this.state = {
         books:  [{
           id: '',
@@ -38,14 +31,18 @@ initState(){
     }
 }
 
-componentDidMount(){
+componentDidMount = () => {
     let books =localStorage.getItem('book');
-    let result = JSON.parse(books);
+    let result =[];
+    if(books){
+       result = JSON.parse(books);
+    }
+    
     this.setState({books: result});
   
 }
 
-clearBook(){
+clearBook = () => {
   this.setState({
     book:  {
       id: '',
@@ -59,7 +56,7 @@ clearBook(){
   });
 }
 
-editBook() {
+editBook = () => {
   let books  = this.state.books || [];
   let indexElement =  books.map((element) => { return element.id; }).indexOf(this.state.book.id);
   books[indexElement] = {
@@ -74,7 +71,7 @@ editBook() {
   this.setState( {edit: false, books: books} )
 }
 
-addBook() {
+addBook = () => {
   let books  = this.state.books || [];
   let book = {
     id: Math.floor( Math.random() *1000000),
@@ -89,27 +86,27 @@ addBook() {
   this.setState( { books: books} )
 }
 
-cancelBook(){
+cancelBook = () => {
   this.clearBook();
 }
 
 
-onInputTextChange(parameter, value) {
+onInputTextChange = (parameter, value) => {
   let book = Object.assign({}, this.state.book);
   book[parameter] = value;                        
   this.setState({book: book});
 }
 
-editButtonBook(book){
+editButtonBook = (book) => {
   this.setState({edit: true, showMenu: true, book: book});
 }
-openMenu(){
+openMenu = () => {
   console.log('cl', this.state.showMenu);
   this.setState({showMenu: !this.state.showMenu})
 }
 
 
-removeBook(book){
+removeBook = (book) => {
   let books = this.state.books;
   let indexElement =  books.map((element) => { return element.name; }).indexOf(book.name);
   books.splice(indexElement, 1);
@@ -117,11 +114,11 @@ removeBook(book){
   this.setState({books: books});
 }
 
-setItem(books) {
+setItem = (books) => {
   try {
     localStorage.setItem('book',JSON.stringify(books));
   } catch (e) {
-    if (e == 'QUOTA_EXCEEDED_ERR') {
+    if (e === 'QUOTA_EXCEEDED_ERR') {
      alert('Превышен лимит');
     }
   }

@@ -6,41 +6,38 @@ class BookForm extends Component {
 
   constructor(props) {
     super(props);
-    this.addBook = this.addBook.bind(this);
-    this.editBook = this.editBook.bind(this);
-    this.cancelBook = this.cancelBook.bind(this);
-    this.onInputTextChange = this.onInputTextChange.bind(this);
+);
 }
 
 
-  onInputTextChange(parameter, value) {
+  onInputTextChange = (parameter, value) => {
     this.props.onInputTextChange(parameter, value);
 }
 
-  cancelBook(){
+  cancelBook = () => {
     this.props.cancelBook();
   }
 
-  editBook(){
+  editBook = () => {
     this.props.editBook();
   }
 
-  addBook(){
+  addBook = () => {
     this.props.addBook();
   }
 
-  disabledButton(){
+  disabledButton = () => {
     if (!(this.props.book.author.trim() && this.props.book.name.trim()
     && this.props.book.year.trim() && this.props.book.pages.trim())){
       return  true;
     } 
     return false
   }
-  openMenu(){
+  openMenu = () => {
     this.props.openMenu();
   }
 
-  formInput(){
+  formInput = () => {
     return(
       <div >
       <h3>Добавить книгу</h3>

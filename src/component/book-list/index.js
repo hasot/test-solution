@@ -3,15 +3,10 @@ import './style.css';
 
 class BookList extends Component {
 
-  constructor(props) {
-    super(props);
-    this.removeBook = this.removeBook.bind(this);
-    this.editBook = this.editBook.bind(this);
-}
-  editBook(book){
+  editBook = (book) => {
     this.props.editBook(book);
   }
-  removeBook(book){
+  removeBook = (book) => {
       this.props.removeBook(book);
   }
 
@@ -21,7 +16,7 @@ class BookList extends Component {
       <div className="container">
         <div className="book-container">
        {
-          books && books.map((element, key) => {
+          books &&  books.map((element, key) => {
               return( 
               <div className="book-info" key={key}> 
                 <div>  {element.name}</div>
