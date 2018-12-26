@@ -42,8 +42,10 @@ componentDidMount = () => {
   
 }
 
-clearBook = () => {
+initDataState = (books) => {
+  this.setItem(books);
   this.setState({
+    books: books,
     book:  {
       id: '',
       author: '',
@@ -57,37 +59,45 @@ clearBook = () => {
 }
 
 editBook = () => {
-  let books  = this.state.books || [];
+  let books  = this.state.books || [{
+    id: '',
+    author: '',
+    name: '',
+    year: '',
+    pages: ''
+  }];
   let indexElement =  books.map((element) => { return element.id; }).indexOf(this.state.book.id);
-  books[indexElement] = {
-        id: Math.floor( Math.random() *1000000),
-        author: this.state.book.author,
-        name: this.state.book.name,
-        year: this.state.book.year,
-        pages: this.state.book.pages
-  };
-  this.clearBook();
-  this.setItem(books);
-  this.setState( {edit: false, books: books} )
+  books[indexElement] = this.initBookElement();
+  this.initDataState(books);
 }
 
 addBook = () => {
   let books  = this.state.books || [];
-  let book = {
+  let book = this.initBookElement();
+  books.push(book);
+  this.initDataState(books);
+}
+initBookElement = () => {
+  return {
     id: Math.floor( Math.random() *1000000),
     author: this.state.book.author,
     name: this.state.book.name,
     year: this.state.book.year,
     pages: this.state.book.pages
   }
-  books.push(book);
-  this.clearBook();
-  this.setItem(books);
-  this.setState( { books: books} )
 }
-
 cancelBook = () => {
-  this.clearBook();
+  this.setState({
+    book:  {
+      id: '',
+      author: '',
+      name: '',
+      year: '',
+      pages: ''
+    },
+    edit: false,
+    showMenu: false
+  });
 }
 
 
