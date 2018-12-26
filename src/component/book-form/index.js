@@ -6,7 +6,6 @@ class BookForm extends Component {
 
   constructor(props) {
     super(props);
-);
 }
 
 
